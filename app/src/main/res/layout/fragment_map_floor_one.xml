@@ -1,0 +1,59 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/f1_map"
+    tools:context="com.hengda.smart.changsha.d.ui.MapFloorOne">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/exhibition_two_F1"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:text="@string/two_unit"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="#fff"
+        android:textStyle="bold|italic"
+        android:lines="2"
+        android:layout_marginLeft="340dp"
+        android:layout_marginTop="70dp"
+        />
+
+    <TextView
+        android:id="@+id/exhibition_three_F1"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="@string/three_unit"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="#fff"
+        android:textStyle="bold|italic"
+
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="120dp"
+        />
+
+    <TextView
+        android:id="@+id/exhibition_one_F1"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="@string/one_unit"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="#fff"
+        android:textStyle="bold|italic"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="17dp"
+        />
+    <TextView
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textStyle="bold|italic"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="320dp"
+        android:text="@string/xueyuan"/>
+</FrameLayout>

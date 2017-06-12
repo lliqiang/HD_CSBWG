@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_intro_acticity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main"
+    tools:context="com.hengda.smart.changsha.d.ui.IntroActicity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:orientation="vertical">-->
+            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="220dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="120dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:src="@drawable/icon_one"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="220dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="120dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:paddingTop="5dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:src="@drawable/icon_two"/>&ndash;&gt;-->
+        <!--</LinearLayout>-->
+        <WebView
+        android:id="@+id/intro_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/back_webintro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="12dp"
+        android:src="@drawable/back"/>
+</RelativeLayout>

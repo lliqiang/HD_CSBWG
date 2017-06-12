@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<litepal>  
+    <dbname value="changsha" />
+  
+    <version value="1" />
+  
+    <list>
+        <mapping class="com.hengda.smart.changsha.d.model.Chinese"/>
+        <mapping class="com.hengda.smart.changsha.d.model.English"/>
+        <mapping class="com.hengda.smart.changsha.d.model.Japanese"/>
+        <mapping class="com.hengda.smart.changsha.d.model.Korean"/>
+        <mapping class="com.hengda.smart.changsha.d.model.MapModel"/>
+        <mapping class="com.hengda.smart.changsha.d.model.Lchinse"/>
+        <mapping class="com.hengda.smart.changsha.d.model.Lenglish"/>
+        <mapping class="com.hengda.smart.changsha.d.model.Ljapanese"/>
+        <mapping class="com.hengda.smart.changsha.d.model.Lkorean"/>
+    </list>
+</litepal>  

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unit_four">4st Exhibition Hall</string>
+    <string name="three_unit">3st Exhibition Hall</string>
+    <string name="two_unit">2st Exhibition Hall</string>
+    <string name="one_unit">1st Exhibition Hall</string>
+    <string name="welcome_cs">Welcome to Changsha Museum!</string>
+    <string name="sure">Confirm</string>
+    <string name="digital_play">Digital</string>
+    <string name="map_guide">Map guide</string>
+    <string name="intro">Introduction</string>
+    <string name="list_goods">Relic-List</string>
+    <string name="input_pwd">Please enter the password ：</string>
+    <string name="pwd_empty">Empty entry</string>
+    <string name="file_exist">Entered exhibit number does not exist</string>
+    <string name="input_num">Please enter the number</string>
+    <string name="is_exist">Ready to leave the guide interface?</string>
+    <string name="cancel">Cancel</string>
+    <string name="big_txt">Big</string>
+    <string name="small_txt">Small</string>
+    <string name="tip_somuch">When there is audio guide for the exhibit nearby, a message box pops up in the map guide and selected collection section. Click on Listen, and there is the commentary.</string>
+    <string name="auto_voice">Auto commentary：</string>
+    <string name="listener">Listen</string>
+    <string name="light_control">Luminance</string>
+    <string name="lan_select">Language</string>
+    <string name="device_no">Device number：</string>
+    <string name="unit_five">Special Exhibition Hall 1</string>
+    <string name="unit_six">Special Exhibition Hall 2</string>
+    <string name='submit'>Confirm</string>
+    <string name="swich_floor">Received signal of another floor. Do you want to switch floor？</string>
+    <string name="xueyuan">Erudite Park</string>
+    <string name="leyuan">Amusement Park</string>
+</resources>

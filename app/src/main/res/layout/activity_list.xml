@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/main"
+    tools:context="com.hengda.smart.changsha.d.ui.ListActivity">
+
+    <ImageView
+      android:id="@+id/back_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp"
+        android:src="@drawable/back" />
+
+    <!--<ScrollView-->
+        <!--android:id="@+id/scrollView_list"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="50dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rl_listOne"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/listtem_bg">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/img_listOne"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30dp"-->
+                    <!--android:src="@mipmap/ic_launcher" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/name_list"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_toRightOf="@id/img_listOne"-->
+                    <!--android:text="古代历史文化成列一厅"-->
+                    <!--android:textColor="#DAA25C"-->
+                    <!--android:textSize="23sp"-->
+                    <!--android:textStyle="bold|italic" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/back_listOne"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:paddingRight="30dp"-->
+                    <!--android:src="@drawable/back_list" />-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rl_listTwo"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/listtem_bg">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/img_listTwo"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30dp"-->
+                    <!--android:src="@mipmap/ic_launcher" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/name_listTwo"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_toRightOf="@id/img_listTwo"-->
+                    <!--android:text="古代历史文化成列一厅"-->
+                    <!--android:textColor="#DAA25C"-->
+                    <!--android:textSize="23sp"-->
+                    <!--android:textStyle="bold|italic" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/back_listTwo"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:paddingRight="30dp"-->
+                    <!--android:src="@drawable/back_list" />-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rl_listThree"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/listtem_bg">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/img_listThree"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30dp"-->
+                    <!--android:src="@mipmap/ic_launcher" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/name_listThree"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_toRightOf="@id/img_listThree"-->
+                    <!--android:text="古代历史文化成列一厅"-->
+                    <!--android:textColor="#DAA25C"-->
+                    <!--android:textSize="23sp"-->
+                    <!--android:textStyle="bold|italic" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/back_listThree"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:paddingRight="30dp"-->
+                    <!--android:src="@drawable/back_list" />-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rl_listFour"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/listtem_bg">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/img_listfour"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30dp"-->
+                    <!--android:src="@mipmap/ic_launcher" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/back_listfour"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:paddingRight="30dp"-->
+                    <!--android:src="@drawable/back_list" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/name_listFour"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="22dp"-->
+                    <!--android:layout_marginStart="22dp"-->
+                    <!--android:layout_toRightOf="@+id/img_listfour"-->
+                    <!--android:text="古代历史文化成列一厅"-->
+                    <!--android:textColor="#DAA25C"-->
+                    <!--android:textSize="23sp"-->
+                    <!--android:textStyle="bold|italic" />-->
+            <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
+</RelativeLayout>

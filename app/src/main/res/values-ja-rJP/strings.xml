@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unit_four">展示ホール4</string>
+    <string name="three_unit">展示ホール3</string>
+    <string name="two_unit">展示ホール2</string>
+    <string name="one_unit">展示ホール1</string>
+    <string name="welcome_cs">長沙博物館へ、ようこそ！</string>
+    <string name="sure">確定</string>
+    <string name="digital_play">オンデマンド</string>
+    <string name="map_guide">地図ガイド</string>
+    <string name="intro">当館について</string>
+    <string name="list_goods">文物リスト</string>
+    <string name="input_pwd">パスワードをご入力ください ：</string>
+    <string name="pwd_empty">内容をご入力ください</string>
+    <string name="file_exist">この番号がありません</string>
+    <string name="input_num">数字番号をご入力ください</string>
+    <string name="is_exist">取り戻しますか</string>
+    <string name="cancel">取り消し</string>
+    <string name="big_txt">大</string>
+    <string name="small_txt">小</string>
+    <string name="tip_somuch">となりの展示品に音声解説があれば、地図ガイドと所蔵精品からダイアログボックスが表示されます。クリックと再生できます</string>
+    <string name="auto_voice">自動受信：</string>
+    <string name="listener">再生</string>
+    <string name="light_control">輝度調節</string>
+    <string name="lan_select">言語設置</string>
+    <string name="device_no">設備番号：</string>
+    <string name="unit_five">特別展示ホール一</string>
+    <string name="unit_six">特別展示ホール二</string>
+    <string name='submit'>確定</string>
+    <string name="swich_floor">ほかのフロアーの信号を受信、フロアーを切り替えますか</string>
+    <string name="xueyuan">博学園</string>
+    <string name="leyuan">博楽園</string>
+</resources>

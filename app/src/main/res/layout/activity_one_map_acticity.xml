@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_one_map_acticity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hengda.smart.changsha.d.ui.OneMapActicity">
+<TextView
+    android:id="@+id/map_txt"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="古代历史文化陈列一厅"
+    android:textSize="20sp"
+    android:textStyle="bold|italic"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="15dp"
+    android:textColor="#DAA25C"/>
+    <FrameLayout
+        android:id="@+id/mapContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageButton
+        android:id="@+id/back_onemap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:padding="18dp"
+        android:src="@drawable/back"/>
+</RelativeLayout>

@@ -1,0 +1,1 @@
+include ':app', ':bottomdialog', ':libzxing', ':lib-zxing', ':notifyutil2', ':tileviewlibrary'

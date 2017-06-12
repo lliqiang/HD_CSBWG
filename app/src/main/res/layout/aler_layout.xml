@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="500dp"
+    android:layout_height="100dp"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_bg">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/voice_dialog"
+    android:layout_gravity="center"
+    android:layout_marginLeft="15dp"/>
+    <TextView
+        android:id="@+id/tip_name"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:textColor="#ffb95f"
+        android:textSize="20sp"
+        android:text="自动讲解：象纹大铜烧"
+
+        android:marqueeRepeatLimit="marquee_forever"
+        android:ellipsize="marquee"
+        android:scrollHorizontally="true"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:singleLine="true"
+
+        />
+    <Button
+        android:id="@+id/dialog_btnsure"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#ffb95f"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+android:background="@drawable/btn_dialog"
+        android:text="收听"
+        />
+    <Button
+        android:id="@+id/dialog_btndeny"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_dialog"
+        android:layout_gravity="center"
+        android:textColor="#ffb95f"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:text="取消"
+        />
+</LinearLayout>

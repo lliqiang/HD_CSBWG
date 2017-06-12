@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unit_four">제4전시청</string>
+    <string name="three_unit">제3전시청</string>
+    <string name="two_unit">제2전시청</string>
+    <string name="one_unit">제1전시청</string>
+    <string name="welcome_cs">창사박물관에 오신 것을 환영합니다.</string>
+    <string name="sure">확인</string>
+    <string name="digital_play">온 디맨드 플레이</string>
+    <string name="map_guide">지도 안내</string>
+    <string name="intro">박물관 소개 </string>
+    <string name="list_goods">전시품 목록</string>
+    <string name="input_pwd">비밀번호를 입력하세요.</string>
+    <string name="pwd_empty">비밀번호가 틀렸습니다.</string>
+    <string name="file_exist">이 번호가 없습니다.</string>
+    <string name="input_num">전시품 번호를 입력하세요.</string>
+    <string name="is_exist">해설 인터페이스를 떠나시겠습니까?</string>
+    <string name="cancel">취소</string>
+    <string name="big_txt">크게</string>
+    <string name="small_txt">작게</string>
+    <string name="tip_somuch">주변 전시품이 음성 안내를 갖추는 겨우, 지도 안내 및 소장품 인터페이스에서 도움말이 나올 것입니다. 도움말을 클릭하면 음성 안내를 들을 수 있습니다.</string>
+    <string name="auto_voice">자동 해설：</string>
+    <string name="listener">들어 보기</string>
+    <string name="light_control">화면 밝기 조절</string>
+    <string name="lan_select">언어 선택</string>
+    <string name="device_no">설비 번호：</string>
+    <string name="unit_five">특별전 제1전시청</string>
+    <string name="unit_six">특별전 제2전시청</string>
+    <string name='submit'>확인</string>
+    <string name="swich_floor">다른 층의 신호를 받았는데, 바꾸시겠습니까?</string>
+    <string name="xueyuan">박학원</string>
+    <string name="leyuan">박락원</string>
+</resources>

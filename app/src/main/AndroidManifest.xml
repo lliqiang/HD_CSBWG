@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hengda.smart.changsha.d">
+
+    <!-- 网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 监听网络的变化 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+
+    <!-- 蓝牙 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".app.HdApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/lanch"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:replace="icon">
+        <activity
+            android:name=".Main"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.DigitalActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.MapActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.IntroActicity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.ListActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.Play"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.BarCodeActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.LaucherActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.MONKEY" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.LanguageActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".admin.LoginActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".admin.SettingActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.SettingView"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.OneMapActicity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.ScanActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.ChildListActivity"
+            android:screenOrientation="landscape" />
+
+        <service
+            android:name=".rfid.RfidNoService">
+        </service>
+
+
+        <receiver android:name=".Main$WifiReceiver" />
+        <receiver android:name=".rfid.BatteryReceiver" />
+
+        <receiver android:name=".Main$MyVolumeReceiver" />
+        <!--<receiver android:name=".rfid.MyBroadcastReceiver">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+        <!--<action android:name="android.net.wifi.WIFI_STATE_CHANGED" />-->
+        <!--<action android:name="android.net.wifi.STATE_CHANGE" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <activity
+            android:name=".admin.AlarmActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".admin.ProgramText"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.ListTipActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".ui.TemporaryPlay"
+            android:screenOrientation="landscape"/>
+    </application>
+
+</manifest>

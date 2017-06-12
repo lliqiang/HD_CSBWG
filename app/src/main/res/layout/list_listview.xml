@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/listtem_bg"
+   >
+<ImageView
+    android:id="@+id/img_list"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginLeft="30dp"
+    android:layout_centerVertical="true"
+    android:src="@mipmap/ic_launcher"/>
+    <TextView
+        android:id="@+id/name_list"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="23sp"
+        android:textColor="#DAA25C"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/img_list"
+        android:textStyle="bold|italic"
+        android:text="古代历史文化成列一厅"
+
+        android:marqueeRepeatLimit="marquee_forever"
+        android:ellipsize="marquee"
+        android:scrollHorizontally="true"
+        android:focusableInTouchMode="true"
+        android:singleLine="true"
+
+        />
+    <ImageView
+        android:id="@+id/back_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="30dp"
+        android:src="@drawable/back_list"/>
+</RelativeLayout>

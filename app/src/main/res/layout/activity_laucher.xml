@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_laucher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lancher_bg"
+    tools:context="com.hengda.smart.changsha.d.ui.LaucherActivity">
+
+
+    <ImageView
+        android:id="@+id/scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/scan_select"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
+
+
+    <ImageView
+    android:id="@+id/off"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_marginLeft="430dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp"
+    android:src="@drawable/off"/>
+    <ImageView
+        android:id="@+id/admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/administator"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="480dp"
+        android:paddingTop="20dp"
+
+
+        />
+    <!--<ImageView-->
+        <!--android:id="@+id/off"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toRightOf="@id/admin"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:src="@drawable/off"/>-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@drawable/zezao_lancher">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_lancher"
+            android:layout_marginTop="30dp"
+           />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/txtzwzao_lancher"
+                android:layout_marginTop="80dp"
+                android:layout_centerHorizontal="true"/>
+     <TextView
+         android:id="@+id/start_guide"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="开始导览"
+         android:textStyle="bold|italic"
+      android:layout_marginTop="80dp"
+         android:textColor="#ffb95f"
+         android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/start_eguide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="START"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold|italic"
+                android:layout_below="@id/start_guide"
+                android:textColor="#ffb95f"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
