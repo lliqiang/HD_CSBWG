@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import com.hengda.smart.changsha.d.app.HdAppConfig;
 import com.hengda.smart.changsha.d.app.HdConstants;
+import com.hengda.smart.changsha.d.model.ResponseBeen;
 
 import java.util.concurrent.TimeUnit;
 
@@ -102,6 +103,23 @@ public class HttpMethods {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s);
     }
+    private <T> void doSubscribe(Subscriber<T> subscriber,
+                                 Observable<Response<T>> observable) {
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(response -> {
+                    if (TextUtils.equals("1", response.getStatus())) {
+                        return response.getData();
+                    } else {
+                        throw new RequestException(response.getMsg());
+                    }
+                })
+                .subscribe(subscriber);
+    }
+
+
+
 //Observable<HttpResponse<DataModel>>
     private class HttpResultFunc<T> implements Func1<HttpResponse<T>, T> {
         @Override
@@ -130,7 +148,9 @@ public class HttpMethods {
      * @param auto_num   点位编号对应app数据表中的AutoNum字段
      */
     public void uploadPosition(Subscriber subscriber, String deviceno, int app_kind, String auto_num, int electricity) {
-        Observable observable = httpRequests.uploadPosition(deviceno, app_kind, auto_num, electricity);
-        toSubscribe(observable, subscriber);
+        Observable<ResponseBeen> observable = httpRequests.uploadPosition(deviceno, app_kind, auto_num, electricity);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
     }
 }

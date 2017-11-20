@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -59,9 +60,12 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
 
 public class LaucherActivity extends DRfidReceiver implements View.OnClickListener {
@@ -77,7 +81,7 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
     TextView startEguide;
     @Bind(R.id.scan)
     ImageView scan;
-    private int intLevel=1;
+    private int intLevel = 1;
     private int intScale;
     private Intent intent;
     NetStateMonitor netStateMonitor;
@@ -106,11 +110,10 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (intent.ACTION_BATTERY_CHANGED.equals(action)) {
-                intLevel = intent.getIntExtra("level", 0);
-                intScale = intent.getIntExtra("scale", 100);
-            }
+            Bundle extras = intent.getExtras();//获取意图中所有的附加信息
+            //获取当前电量，总电量
+            intLevel = extras.getInt(BatteryManager.EXTRA_LEVEL/*当前电量*/, 0);
+            intScale = extras.getInt(BatteryManager.EXTRA_SCALE/*总电量*/, 100);
         }
     };
 
@@ -130,6 +133,9 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
         startGuide.setTypeface(HdApplication.typeface);
         startEguide.setTypeface(HdApplication.typeface);
         HdAppConfig.setPowerMode(0);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(broadcastReceiver, filter);
         if (HdAppConfig.getPowerMode() == 0) {
             off.setVisibility(View.INVISIBLE);
         } else {
@@ -158,13 +164,13 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LaucherActivity.this, "e" + e, Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override
                     public void onNext(DeviceNoEvent deviceNoEvent) {
                         initPushListener();
-                        Toast.makeText(LaucherActivity.this, deviceNoEvent.getIP(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
         if (subscribe == null) {
@@ -176,7 +182,7 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
 
                 @Override
                 public void onError(Throwable e) {
-                    Log.i("base", "base:--------------" + e);
+
                 }
 
                 @Override
@@ -231,8 +237,6 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
                     startActivity(new Intent(LaucherActivity.this, AlarmActivity.class));
                 }
                 break;
-//                HttpMethods.getInstance().alarm(new ProgressSubscriber(LaucherActivity.this, mNextListener, false),
-//                        HdAppConfig.getDeviceNo(), HdConstants.START_ALARM);
             case 2003:
                 if (AlarmActivity.mInstance != null) {
                     AlarmActivity.mInstance.finish();
@@ -275,21 +279,25 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
                                     ^ buffer[m + 4] ^ buffer[m + 5])) {
                                 int rfidNum = (buffer[m + 4] & 0x0FF) * 256
                                         + (buffer[m + 5] & 0x0FF);
-                                Log.i("rfid","rfid:----------------------"+rfidNum);
                                 onReceiveAutoNo(rfidNum);
-                                SubscriberOnNextListener uploadListener = new SubscriberOnNextListener<HttpResponse>() {
-                                    @Override
-                                    public void onSuccess(HttpResponse response) {
-                                        Log.i("respose","respose:-----------------"+response.getMsg()+response.getData()+response.getStatus());
-                                    }
+                                if (NetUtil.isConnected(LaucherActivity.this) && isReplay(rfidNum)) {
+                                    HttpMethods.getInstance().uploadPosition(new Subscriber() {
+                                        @Override
+                                        public void onCompleted() {
 
-                                };
-                                if (NetUtil.isConnected(LaucherActivity.this)){
+                                        }
 
-                                    HttpMethods.getInstance().uploadPosition(new ProgressSubscriber(LaucherActivity.this, uploadListener, false),HdAppConfig.getDeviceNo(), 3,String.valueOf(rfidNum), intLevel);
+                                        @Override
+                                        public void onError(Throwable e) {
+
+                                        }
+
+                                        @Override
+                                        public void onNext(Object o) {
+
+                                        }
+                                    }, HdAppConfig.getDeviceNo(), 3, String.valueOf(rfidNum), intLevel);
                                 }
-//
-//                                }
                             }
                         }
                     }
@@ -340,6 +348,7 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
     protected void onDestroy() {
         super.onDestroy();
         subscribe.unsubscribe();
+        unregisterReceiver(broadcastReceiver);
         if (flag) {
             unregisterRFIDReceiver();
             unregisterReceiver(netStateMonitor);
@@ -465,7 +474,6 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
             case "send_msg":
                 FileUtils.writeStringToFile(SDCardUtil.getSDCardPath() + "PushLog.txt", new Gson().toJson(tcpResp), true);
                 RxBus.getDefault().post(tcpResp);
-                Log.i("TGD", "-----------ddddd-----------" + tcpResp.toString());
                 break;
         }
     }
@@ -530,4 +538,15 @@ public class LaucherActivity extends DRfidReceiver implements View.OnClickListen
         }
     }
 
+    /*
+     * 隔一复收
+     * */
+    private boolean isReplay(int num) {
+        boolean temp_flag = false;
+        if (num != 0 && num != lastNum) {
+            lastNum = num;
+            temp_flag = true;
+        }
+        return temp_flag;
+    }
 }

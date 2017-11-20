@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -149,13 +150,13 @@ public class DigitalActivity extends BaseActivity {
                         startActivity(intent);
                     }
                     cursor.close();
-                } else if (cursor1.getCount()>0){
+                }
+                else if (cursor1.getCount()>0){
                     if (cursor1.moveToFirst()) {
                         Lchinse lchinse = Lchinse.CursorToModel(cursor1);
                         Intent intent = new Intent(DigitalActivity.this, TemporaryPlay.class);
                         intent.putExtra("lchinese",lchinse);
                         startActivity(intent);
-
                     }
                     cursor1.close();
                 }else {

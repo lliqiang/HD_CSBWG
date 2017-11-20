@@ -52,7 +52,7 @@ public class HdAppConfig {
     public static final String GROUP_NMC = "GROUP_NMC";
     public static final String GroupText = "GroupText";
     public static final String PICRES = "PICRES";
-
+    public static int auto = 1;
     public static final String IS_RES = "IS_RES";
     public static final String EA_IS_RES = "EA_IS_RES";
     public static final String EC_IS_RES = "EC_IS_RES";
@@ -88,21 +88,25 @@ public class HdAppConfig {
         StringBuilder deviceNo = FileUtils.readStringFromFile(SDCardUtil.getSDCardPath() + "DeviceNo.txt", "UTF-8");
         return TextUtils.isEmpty(deviceNo) ? HdConstants.DEFAULT_DEVICE_NO : deviceNo.toString();
     }
+
     public static void setText(String handler) {
         appConfigShare.setPrefString(HANDLER, handler);
     }
+
     public static void setLanguage(String language) {
         appConfigShare.setPrefString(LANGUAGE, language);
+    }
+
+    public static String getLanguage() {
+        return appConfigShare.getPrefString(LANGUAGE, HdConstants.LANG_DEFAULT);
     }
 
     public static void setAutoPlay(boolean flag) {
         appConfigShare.setPrefBoolean(AUTO_PLAY, flag);
     }
+
     public static boolean getAutoPlay() {
         return appConfigShare.getPrefBoolean(AUTO_PLAY, false);
-    }
-    public static String getLanguage() {
-        return appConfigShare.getPrefString(LANGUAGE, HdConstants.LANG_DEFAULT);
     }
 
     public static void setClientId(String userType) {
@@ -112,6 +116,7 @@ public class HdAppConfig {
     public static String getClientId() {
         return appConfigShare.getPrefString(PUSH_TYPE, HdConstants.ADULT);
     }
+
     public static void setJoinGroupTime(long joinGroupTime) {
         appConfigShare.setPrefLong(JOIN_GROUP_TIME, joinGroupTime);
     }
@@ -166,7 +171,7 @@ public class HdAppConfig {
     }
 
     public static int getAutoFlag() {
-        return appConfigShare.getPrefInt(AUTO_FLAG,1);
+        return appConfigShare.getPrefInt(AUTO_FLAG, 1);
     }
 
     public static void setAutoMode(int autoMode) {
@@ -219,8 +224,6 @@ public class HdAppConfig {
     }
 
 
-
-
     public static void setPowerPermi(int flag) {
         appConfigShare.setPrefInt(POWER_PERMI, flag);
     }
@@ -270,11 +273,13 @@ public class HdAppConfig {
     public static String getFilePath(String exhibit_id) {
         return getDefaultFileDir() + "exhibit/" + exhibit_id + "/" + getLanguage() + "/";
     }
-//获取特展厅的路径
+
+    //获取特展厅的路径
 //获取展品根路径
-public static String getTempPath(String exhibit_id) {
-    return getDefaultFileDir() + "te_exhibit/" + exhibit_id + "/" + getLanguage() + "/";
-}
+    public static String getTempPath(String exhibit_id) {
+        return getDefaultFileDir() + "te_exhibit/" + exhibit_id + "/" + getLanguage() + "/";
+    }
+
     //获取展品图片根路径
     public static String getImgPath(String exhibit_id) {
         return getDefaultFileDir() + "exhibit/" + exhibit_id + "/" + "images/";
@@ -305,6 +310,7 @@ public static String getTempPath(String exhibit_id) {
     public static void setGroupName(String groupnm) {
         appConfigShare.setPrefString(GROUP_NM, groupnm);
     }
+
     //    获取数据库文件路径
     public static String getDbFilePath() {
 
@@ -316,9 +322,10 @@ public static String getTempPath(String exhibit_id) {
         File file = new File(getDefaultFileDir() + HdConstants.DB_FILE_NAME);
         return file.exists();
     }
+
     //判断数据库是否存在
     public static boolean isResExist() {
-        File file = new File(getMapFilePath(getLanguage(),2)+"/"+"list.png");
+        File file = new File(getMapFilePath(getLanguage(), 2) + "/" + "list.png");
         return file.exists();
     }
 //http://hengdawb-res.oss-cn-hangzhou.aliyuncs.com/HD-GXKJG-RES%2FCHINESE%2Fadult%2Fmap.zip

@@ -10,8 +10,6 @@ import android.util.Log;
 import com.hengda.smart.changsha.d.common.util.NetUtil;
 import com.hengda.smart.changsha.d.common.util.RxBus;
 import com.hengda.smart.changsha.d.model.NetBean;
-import com.hengda.smart.changsha.d.model.VoiceBean;
-
 import org.greenrobot.eventbus.EventBus;
 
 /**

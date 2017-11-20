@@ -62,11 +62,11 @@ public class SettingView extends BaseActivity implements View.OnClickListener {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     HdAppConfig.setAutoPlay(true);
-                    RxBus.getDefault().post(new AutoBean(1));
+                    HdAppConfig.auto=1;
                     switchBtn.setBackColorRes(R.color.colorAccent);
                 } else {
+                    HdAppConfig.auto=0;
                     HdAppConfig.setAutoPlay(false);
-                    RxBus.getDefault().post(new AutoBean(0));
                     switchBtn.setBackColorRes(R.color.white);
                 }
             }

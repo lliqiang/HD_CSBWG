@@ -240,12 +240,11 @@ public class SettingActivity extends CheckUpdateActivity {
                     public void p() {
                         String ipPort = edtIp.getText().toString();
                         if (TextUtils.isEmpty(ipPort)) {
-                            Toast.makeText(SettingActivity.this, getString(R.string.ip_nospace), Toast.LENGTH_SHORT).show();
+
                         } else {
                             DialogCenter.hideDialog();
                             if (!TextUtils.equals(HdAppConfig.getDefaultIpPort(), ipPort)) {
                                 HdAppConfig.setDefaultIpPort(ipPort);
-                                Log.i("DefIp", "DefIp----------------" + HdAppConfig.getDefaultIpPort());
                                 RxBus.getDefault().post(new DeviceNoEvent(0));
                             }
                         }

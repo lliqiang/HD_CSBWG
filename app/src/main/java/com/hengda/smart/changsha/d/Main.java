@@ -9,37 +9,22 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.hengda.smart.changsha.d.admin.CheckCallback;
 import com.hengda.smart.changsha.d.app.HdAppConfig;
 import com.hengda.smart.changsha.d.app.HdApplication;
-import com.hengda.smart.changsha.d.common.util.RxBus;
-import com.hengda.smart.changsha.d.model.AutoBean;
-import com.hengda.smart.changsha.d.model.CheckResponse;
-import com.hengda.smart.changsha.d.model.VoiceBean;
 import com.hengda.smart.changsha.d.rfid.NetStateMonitor;
 import com.hengda.smart.changsha.d.ui.BaseActivity;
 import com.hengda.smart.changsha.d.ui.DigitalActivity;
 import com.hengda.smart.changsha.d.ui.IntroActicity;
-import com.hengda.smart.changsha.d.ui.LaucherActivity;
 import com.hengda.smart.changsha.d.ui.ListTipActivity;
 import com.hengda.smart.changsha.d.ui.MapActivity;
 import com.hengda.smart.changsha.d.ui.SettingView;
-import com.hengda.smart.changsha.d.widget.dialog.NotifyDialog;
 import com.hengda.smart.changsha.d.widget.dialog.WelcomeDialog;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import rx.functions.Action1;
-
 public class Main extends BaseActivity implements View.OnClickListener {
 
     @Bind(R.id.digital_play)
@@ -52,8 +37,6 @@ public class Main extends BaseActivity implements View.OnClickListener {
     ImageView listWenwu;
     @Bind(R.id.setting_btn)
     ImageView settingBtn;
-    //    @Bind(R.id.scan)
-//    ImageView scan;
     @Bind(R.id.txt_digital)
     TextView txtDigital;
     @Bind(R.id.txt_map)
@@ -74,11 +57,9 @@ public class Main extends BaseActivity implements View.OnClickListener {
     TextView volumn;
     private int intLevel;
     private int intScale;
-    AudioManager mAudioManager;
+    static AudioManager mAudioManager;
     private WelcomeDialog welcomeDialog;
-    private int current;
-    private int netMobile;
-    public MyVolumeReceiver mVolumeReceiver;
+    public int current;
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -96,8 +77,6 @@ public class Main extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EventBus.getDefault().register(this);
-        myRegisterReceiver();
         registerNetStateMonitor();
         welcomeDialog = new WelcomeDialog(this);
         welcomeDialog.message(getString(R.string.welcome_cs))
@@ -110,7 +89,8 @@ public class Main extends BaseActivity implements View.OnClickListener {
                         welcomeDialog.dismiss();
                     }
                 }).show();
-        mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE) ;
+        mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+        current = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         ButterKnife.bind(this);
         registerReceiver(broadcastReceiver, new IntentFilter(
                 Intent.ACTION_BATTERY_CHANGED));
@@ -119,28 +99,24 @@ public class Main extends BaseActivity implements View.OnClickListener {
         txtList.setTypeface(HdApplication.typeface);
         tztIntro.setTypeface(HdApplication.typeface);
         initListener();
-        RxBus.getDefault().toObservable(AutoBean.class).subscribe(new Action1<AutoBean>() {
-            @Override
-            public void call(AutoBean voiceBean) {
-                if (voiceBean.getVolunm() == 0) {
-                    autoImg.setImageResource(R.drawable.auto_close);
-                } else {
-                    autoImg.setImageResource(R.drawable.auto_voice);
-                }
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-
-            }
-        });
+        mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        current = (int) ((double) (mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC)) * 100 / 60);
+        volumn.setText(current + "");
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
+        if (HdAppConfig.getAutoFlag()==1) {
+            if (HdAppConfig.auto == 1) {
+                autoImg.setImageResource(R.drawable.auto_voice);
+            } else {
+                autoImg.setImageResource(R.drawable.auto_close);
+            }
+        } else {
+            autoImg.setImageResource(R.drawable.auto_close);
+        }
     }
 
     private void initListener() {
@@ -173,9 +149,6 @@ public class Main extends BaseActivity implements View.OnClickListener {
             case R.id.setting_btn:
                 openActivity(Main.this, SettingView.class);
                 break;
-//            case R.id.scan:
-//                openActivity(Main.this, BarCodeActivity.class);
-//                break;
             case R.id.txt_digital:
                 openActivity(Main.this, DigitalActivity.class);
                 break;
@@ -204,77 +177,46 @@ public class Main extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainEventBus(VoiceBean bean) {
-        if (bean.getVolunm() == 0) {
-            voiceImg.setImageResource(R.drawable.voice_close);
-        } else {
-            voiceImg.setImageResource(R.drawable.voice_open);
-        }
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
-        unregisterReceiver(mVolumeReceiver);
         unregisterReceiver(broadcastReceiver);
         unregisterReceiver(netStateMonitor);
         ButterKnife.unbind(this);
     }
 
-    public class MyVolumeReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //如果音量发生变化则更改seekbar的位置
-            if (intent.getAction().equals("android.media.VOLUME_CHANGED_ACTION")) {
 
-                 current = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);// 当前的媒体音量
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+
+
+                if (current > 0) {
+                    current = current - 10;
+                    if (current == 0) {
+                        voiceImg.setImageResource(R.drawable.voice_close);
+                    }
+                } else if (current <= 0) {
+                    current = 0;
+                    voiceImg.setImageResource(R.drawable.voice_close);
+                }
                 volumn.setText(current + "");
-            }
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                if (current >= 100) {
+                    current = 100;
+                } else {
+                    current = current + 10;
+                }
+                volumn.setText(current + "");
+                voiceImg.setImageResource(R.drawable.voice_open);
+                return true;
         }
+        return super.onKeyDown(keyCode, event);
     }
 
-//    public class WifiReceiver extends BroadcastReceiver {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            int wifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, WifiManager.WIFI_STATE_DISABLED);
-//            Log.e("", "wifiState:" + wifiState);
-//            switch (wifiState) {
-//                case WifiManager.WIFI_STATE_DISABLED:
-//                    wifiImg.setImageResource(R.drawable.wifi_close);
-//                    break;
-//                case WifiManager.WIFI_STATE_ENABLED:
-//                    wifiImg.setImageResource(R.drawable.wifi_open);
-//                    break;
-//            }
-//        }
-//    }
-
-    /**
-     * 注册当音量发生变化时接收的广播
-     */
-    private void myRegisterReceiver() {
-        mVolumeReceiver = new MyVolumeReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("android.media.VOLUME_CHANGED_ACTION");
-        registerReceiver(mVolumeReceiver, filter);
-
-    }
-
-
-
-
-
-    /**
-     * 注册当wifi发生变化时接收的广播
-     */
-//    private void myWifiReceiver() {
-//        wifiReceiver = new WifiReceiver();
-//        IntentFilter filter = new IntentFilter();
-//        filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
-//        registerReceiver(wifiReceiver, filter);
-//    }
     /**
      * 注册网络状态监听器
      */
@@ -282,8 +224,7 @@ public class Main extends BaseActivity implements View.OnClickListener {
         netStateMonitor = new NetStateMonitor() {
             @Override
             public void onConnected() {
-                if (wifiImg!=null){
-
+                if (wifiImg != null) {
                     wifiImg.setImageResource(R.drawable.wifi_open);
                 }
             }
@@ -291,7 +232,7 @@ public class Main extends BaseActivity implements View.OnClickListener {
             @Override
             public void onDisconnected() {
 
-                if (wifiImg!=null){
+                if (wifiImg != null) {
 
                     wifiImg.setImageResource(R.drawable.wifi_close);
                 }

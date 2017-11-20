@@ -58,6 +58,7 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.MONKEY" />
@@ -86,22 +87,18 @@
             android:name=".ui.ChildListActivity"
             android:screenOrientation="landscape" />
 
-        <service
-            android:name=".rfid.RfidNoService">
-        </service>
-
+        <service android:name=".rfid.RfidNoService"></service>
 
         <receiver android:name=".Main$WifiReceiver" />
         <receiver android:name=".rfid.BatteryReceiver" />
-
         <receiver android:name=".Main$MyVolumeReceiver" />
-        <!--<receiver android:name=".rfid.MyBroadcastReceiver">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
-        <!--<action android:name="android.net.wifi.WIFI_STATE_CHANGED" />-->
-        <!--<action android:name="android.net.wifi.STATE_CHANGE" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
+        <!-- <receiver android:name=".rfid.MyBroadcastReceiver"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.net.conn.CONNECTIVITY_CHANGE" /> -->
+        <!-- <action android:name="android.net.wifi.WIFI_STATE_CHANGED" /> -->
+        <!-- <action android:name="android.net.wifi.STATE_CHANGE" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
         <activity
             android:name=".admin.AlarmActivity"
@@ -111,9 +108,11 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".ui.ListTipActivity"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".ui.TemporaryPlay"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.TemporaryPlay"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ui.Main2Activity"></activity>
     </application>
 
 </manifest>

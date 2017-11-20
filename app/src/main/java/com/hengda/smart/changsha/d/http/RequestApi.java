@@ -8,6 +8,7 @@ import com.hengda.smart.changsha.d.app.HdApplication;
 import com.hengda.smart.changsha.d.app.HdConstants;
 import com.hengda.smart.changsha.d.common.util.AppUtil;
 import com.hengda.smart.changsha.d.model.CheckResponse;
+import com.hengda.smart.changsha.d.model.ScanBean;
 
 
 import java.util.Hashtable;
@@ -125,6 +126,7 @@ public class RequestApi {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
     }
+
     /**
      * 获取DB的数据
      *
@@ -134,6 +136,7 @@ public class RequestApi {
         Observable observable = iRequestService.getDBData().map(new RequestApi.HttpResultFunc());
         toSubscribe(observable, subscriber);
     }
+
     private <T> void toSubscribe(Observable<T> o, Subscriber<T> s) {
         o.subscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
@@ -158,6 +161,7 @@ public class RequestApi {
             }
         }
     }
+
     public void getRes(Subscriber<ResUpdate> subscriber, int version) {
         Observable<ResUpdate> observable = iRequestService.getRes(version);
         observable.subscribeOn(Schedulers.io())
@@ -184,6 +188,21 @@ public class RequestApi {
     }
 
     /**
+     * 浏览、播放加一
+     * @param subscriber
+     * @param exhibit_id
+     * @param type
+     * @param src
+     */
+    public void scanCount(Subscriber<ScanBean> subscriber, String exhibit_id, String type, String src) {
+        Observable<ScanBean> observable = iRequestService.scanCount(exhibit_id, type, src);
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    /**
      * 请求机器号
      *
      * @param subscriber
@@ -193,7 +212,6 @@ public class RequestApi {
         Observable<Response<String>> observable = iRequestService.reqDeviceNo(app_kind);
         doSubscribe(subscriber, observable);
     }
-
 
 
     /**

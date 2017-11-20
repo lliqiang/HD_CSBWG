@@ -7,6 +7,7 @@ package com.hengda.smart.changsha.d.http;
 
 import com.hengda.smart.changsha.d.model.CheckResponse;
 import com.hengda.smart.changsha.d.model.DataModel;
+import com.hengda.smart.changsha.d.model.ScanBean;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -86,6 +87,16 @@ public interface IRequestService {
     @FormUrlEncoded
     @POST("index.php?g=mapi&m=positions&a=upload_looks")
     Observable<HttpResponse> lookCount(@Field("exhibit_id") String exhibit_id);
+
+    /**
+     * 浏览、播放加一
+     * @param exhibit_id
+     * @param type
+     * @param src
+     * @return
+     */
+    @GET("index.php?g=mapi&m=exhibit&a=num_relative")
+    Observable<ScanBean> scanCount(@Query("exhibit_id") String exhibit_id,@Query("type") String type,@Query("src") String src);
     /**
      * 数据库
      *

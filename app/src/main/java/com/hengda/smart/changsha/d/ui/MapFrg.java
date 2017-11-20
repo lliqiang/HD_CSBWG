@@ -76,6 +76,7 @@ public class MapFrg extends android.app.Fragment {
     private BottomDialog dialog;
     private List<Exhibition> allExhibiList;
     private BitmapProviderFile bitmapProviderFile;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -299,10 +300,12 @@ public class MapFrg extends android.app.Fragment {
         tileView.addSample(baseMapPath + "/img.png", false);
         tileView.setBitmapProvider(bitmapProviderFile);
     }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
     }
+
     private void placeMarker(Mark marker, double x, double y) {
         tileView.addMarker(marker.getMarkerView(), x, y, -0.0f, -1.0f);
 

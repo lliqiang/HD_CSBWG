@@ -21,6 +21,7 @@ import com.hengda.smart.changsha.d.http.HttpResponse;
 import com.hengda.smart.changsha.d.http.RequestApi;
 import com.hengda.smart.changsha.d.model.Exhibition;
 import com.hengda.smart.changsha.d.model.Lchinse;
+import com.hengda.smart.changsha.d.model.ScanBean;
 import com.hengda.smart.changsha.d.rfid.BatteryReceiver;
 import com.hengda.smart.changsha.d.widget.dialog.ExistDialog;
 
@@ -73,26 +74,9 @@ public class TemporaryPlay extends BaseActivity implements View.OnClickListener,
         setContentView(R.layout.temp_play);
         ButterKnife.bind(this);
         existDialog = new ExistDialog(this);
-
         initlistner();
         lchinse = (Lchinse) getIntent().getSerializableExtra("lchinese");
-        RequestApi.getInstance().lookCount(new Subscriber<HttpResponse>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(HttpResponse httpResponse) {
-
-            }
-        }, lchinse.getExhibit_id());
-
+        scanOrPlay();
         initUI();
         loadExhibit(lchinse, handler);
     }
@@ -100,7 +84,6 @@ public class TemporaryPlay extends BaseActivity implements View.OnClickListener,
     private void initlistner() {
         tempPlay.setOnClickListener(this);
         tempBackPlay.setOnClickListener(this);
-
     }
 
     @Override
@@ -234,6 +217,41 @@ public class TemporaryPlay extends BaseActivity implements View.OnClickListener,
             }
         });
 
+    }
+
+    //浏览、播放加一
+    private void scanOrPlay() {
+        RequestApi.getInstance().scanCount(new Subscriber<ScanBean>() {
+            @Override
+            public void onCompleted() {
+                RequestApi.getInstance().scanCount(new Subscriber<ScanBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(ScanBean scanBean) {
+
+                    }
+                }, lchinse.getExhibit_id(), "3", "2");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ScanBean scanBean) {
+
+            }
+        }, lchinse.getExhibit_id(), "1", "2");
     }
 
     //添加seekBar的监听事件

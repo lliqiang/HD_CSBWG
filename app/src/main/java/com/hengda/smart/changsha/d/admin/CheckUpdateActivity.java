@@ -94,7 +94,6 @@ public class CheckUpdateActivity extends BaseActivity {
     private Subscription resDownloader;
     private AppBean mAppBean;
     public WifiReceiver wifiReceiver;
-    private List<MapUpdate.DataBean> dataBeanList;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -184,7 +183,6 @@ public class CheckUpdateActivity extends BaseActivity {
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(CheckUpdateActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.i("Throwable", "Throwable:-------------" + e.toString());
                 DialogCenter.hideProgressDialog();
             }
@@ -318,9 +316,7 @@ public class CheckUpdateActivity extends BaseActivity {
     private void showDownloadingDialog() {
         txtProgress = (TextView) View.inflate(CheckUpdateActivity.this, R.layout
                 .dialog_custom_view_txt, null);
-
         txtProgress.setText("下载安装包...");
-
 
         DialogCenter.showDialog(CheckUpdateActivity.this, txtProgress, new DialogClickListener() {
             @Override
@@ -328,7 +324,6 @@ public class CheckUpdateActivity extends BaseActivity {
                 DialogCenter.hideDialog();
                 FileApi.cancelLoading();
             }
-
             @Override
             public void n() {
             }

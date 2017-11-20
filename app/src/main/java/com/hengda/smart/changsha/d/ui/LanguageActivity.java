@@ -76,6 +76,24 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
         ButterKnife.bind(this);
         initListner();
         registerNetStateMonitor();
+
+        HttpMethods.getInstance().uploadPosition(new Subscriber() {
+            @Override
+            public void onCompleted() {
+                Log.i("Battery", "onCompleted---------------");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("Battery", "onError---------------" + e.getMessage());
+            }
+
+            @Override
+            public void onNext(Object o) {
+
+            }
+        }, HdAppConfig.getDeviceNo(), 3, "101", 83);
+
     }
 
     private void initListner() {

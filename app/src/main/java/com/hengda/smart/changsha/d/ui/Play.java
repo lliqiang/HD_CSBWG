@@ -23,6 +23,7 @@ import com.hengda.smart.changsha.d.app.HdApplication;
 import com.hengda.smart.changsha.d.http.HttpResponse;
 import com.hengda.smart.changsha.d.http.RequestApi;
 import com.hengda.smart.changsha.d.model.Exhibition;
+import com.hengda.smart.changsha.d.model.ScanBean;
 import com.hengda.smart.changsha.d.rfid.BatteryReceiver;
 import com.hengda.smart.changsha.d.widget.dialog.ExistDialog;
 
@@ -32,7 +33,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.Subscriber;
 
-public class Play extends BaseActivity implements View.OnClickListener,BatteryReceiver.MyListener {
+public class Play extends BaseActivity implements View.OnClickListener, BatteryReceiver.MyListener {
 
     @Bind(R.id.web_play)
     WebView webPlay;
@@ -90,10 +91,33 @@ public class Play extends BaseActivity implements View.OnClickListener,BatteryRe
 
         initlistner();
         exhibition = (Exhibition) getIntent().getSerializableExtra("exhibition");
-        RequestApi.getInstance().lookCount(new Subscriber<HttpResponse>() {
+        scanOrPlay();
+
+        initUI();
+        loadExhibit(exhibition, handler);
+    }
+
+    //浏览、播放加一
+    private void scanOrPlay() {
+        RequestApi.getInstance().scanCount(new Subscriber<ScanBean>() {
             @Override
             public void onCompleted() {
+                RequestApi.getInstance().scanCount(new Subscriber<ScanBean>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(ScanBean scanBean) {
+
+                    }
+                }, exhibition.getExhibit_id(), "3", "2");
             }
 
             @Override
@@ -102,13 +126,10 @@ public class Play extends BaseActivity implements View.OnClickListener,BatteryRe
             }
 
             @Override
-            public void onNext(HttpResponse httpResponse) {
+            public void onNext(ScanBean scanBean) {
 
             }
-        },exhibition.getExhibit_id());
-
-        initUI();
-        loadExhibit(exhibition, handler);
+        }, exhibition.getExhibit_id(), "1", "2");
     }
 
     private void initlistner() {

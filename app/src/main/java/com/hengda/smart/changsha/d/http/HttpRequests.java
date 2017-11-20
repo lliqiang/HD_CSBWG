@@ -3,6 +3,7 @@ package com.hengda.smart.changsha.d.http;
 
 import com.hengda.smart.changsha.d.model.DataModel;
 import com.hengda.smart.changsha.d.model.MapUpdate;
+import com.hengda.smart.changsha.d.model.ResponseBeen;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -46,11 +47,11 @@ auto_num	string
  点位编号对应app数据表中的AutoNum字段
 
  electricity	int
-电量
+电量 index.php?g=mapi&m=positions&a=positions
     * */
     @FormUrlEncoded
     @POST("index.php?g=mapi&m=positions&a=positions")
-    Observable<HttpResponse<String>> uploadPosition(@Field("deviceno") String deviceno, @Field("app_kind") int app_kind, @Field("auto_num") String auto_num, @Field("electricity") int electricity);
+    Observable<ResponseBeen> uploadPosition(@Field("deviceno") String deviceno, @Field("app_kind") int app_kind, @Field("auto_num") String auto_num, @Field("electricity") int electricity);
 
     /**
      * 导览机报警
